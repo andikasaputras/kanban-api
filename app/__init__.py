@@ -7,6 +7,7 @@ from config import config
 from .db import init_db
 from logging_config import init_logging
 from .exceptions.errorhandlers import init_errorhandlers
+from .auth.auth_routes import auth
 
 
 def create_app(config_name=None):
@@ -24,5 +25,6 @@ def create_app(config_name=None):
     init_errorhandlers(app)
 
     # Register blueprints
+    app.register_blueprint(auth, url_prefix="/auth")
 
     return app
